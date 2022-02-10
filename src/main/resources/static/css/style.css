@@ -1,6 +1,13 @@
-    .top-title {
-        text-align: center;
-        font-size: 50px;
-        height: 100px;
-        font-weight: 900;
-    }
+/* 로그인 화면 */
+.login {
+    margin: 65px auto;
+    width: 500px;
+}
+.login-title {
+    padding-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.login-content > button {
+    width: 100%;
+}

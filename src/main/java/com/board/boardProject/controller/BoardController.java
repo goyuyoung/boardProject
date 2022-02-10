@@ -16,4 +16,9 @@ public class BoardController {
     public String header(){
         return "/layout/header";
     }
+
+    @GetMapping("/footer")
+    public String footer(){
+        return "/layout/footer";
+    }
 }
