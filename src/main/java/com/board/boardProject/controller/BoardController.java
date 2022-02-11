@@ -2,7 +2,6 @@ package com.board.boardProject.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BoardController {
@@ -20,5 +19,25 @@ public class BoardController {
     @GetMapping("/footer")
     public String footer(){
         return "/layout/footer";
+    }
+
+    @GetMapping("/join")
+    public String join(){
+        return "join";
+    }
+
+    @GetMapping("/boardWrite")
+    public String boardWrite(){
+        return "/board/boardWrite";
+    }
+
+    @GetMapping("/boardList")
+    public String boardList(){
+        return "/board/boardList";
+    }
+
+    @GetMapping("/myInfo")
+    public String myInfo(){
+        return "myInfo";
     }
 }

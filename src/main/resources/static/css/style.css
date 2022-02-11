@@ -11,3 +11,6 @@
 .login-content > button {
     width: 100%;
 }
+.joinBtn {
+    margin-bottom: 10px;
+}
