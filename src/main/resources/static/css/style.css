@@ -1,16 +1,27 @@
-/* 로그인 화면 */
-.login {
+.main {
     margin: 65px auto;
     width: 500px;
 }
-.login-title {
+.main-title,
+.fluid-title {
     padding-bottom: 30px;
     font-size: 30px;
     font-weight: bold;
 }
-.login-content > button {
+.main-content > button {
     width: 100%;
 }
 .joinBtn {
     margin-bottom: 10px;
+}
+.fluid-main {
+    margin: 65px;
+}
+.page-link,
+.page-link:hover {
+    color: #000000;
+}
+.page-link:focus {
+    color: #000000;
+    box-shadow: 0 0 0 0;
 }
