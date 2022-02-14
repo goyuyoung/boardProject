@@ -16,4 +16,13 @@ public class BoardViewController {
         return "/board/boardList";
     }
 
+    @GetMapping("/boardDetail")
+    public String boardDetail(){
+        return "/board/boardDetail";
+    }
+
+    @GetMapping("/boardLock")
+    public String boardLock(){
+        return "/board/boardLock";
+    }
 }

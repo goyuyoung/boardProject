@@ -20,6 +20,10 @@
 .navbar-nav li a{
     font-size: 15px;
 }
+.dropdown-item:active {
+    color: #1e2125;
+    background-color: #e9ecef;
+}
 /* footer */
 footer {
     position: relative;
