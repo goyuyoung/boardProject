@@ -31,14 +31,11 @@ var onClickUpdateBtn = function () {
                   , title: $("#board-title").val()
                   , content: $("#board-content").val() }
         $.get(apiUrl + "/updateBoard", param,function (res) {
-            console.log(res);
-        }).success(function (){
-            //update 필요
             alert("게시글 수정이 완료되었습니다.");
             $("#board-title").attr("readonly",true);
             $("#board-content").attr("readonly",true);
             $("#updateBtn").text("수정");
-        })
+        });
 
     }
 

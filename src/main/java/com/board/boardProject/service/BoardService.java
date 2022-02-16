@@ -5,9 +5,6 @@ import com.board.boardProject.repository.BoardRepository;
 import com.board.boardProject.vo.BoardVO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +22,7 @@ public class BoardService {
 
     public List<BoardVO> findBoardList() {
 //        List<Board> boardList =  boardRepository.findAll();
-        List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
+        List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
         List<BoardVO> boardVOList = new ArrayList<>();
         // EntityList -> VOList
         for(Board board : boardList) {
@@ -49,6 +46,10 @@ public class BoardService {
     }
 
     public void updateBoard(BoardVO boardVO) {
+        boardRepository.updateBoard(boardVO.getNo(), boardVO.getTitle(), boardVO.getContent());
+    }
+
+    public void saveBoard(BoardVO boardVO) {
         Board board = modelMapper.map(boardVO, Board.class);
         boardRepository.save(board);
     }
