@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Board Project</title>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/board/boardDetail.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -30,20 +31,21 @@
             </div>
             <div class="btnBox">
                 <button type="button" class="btn btn-secondary listBtn" onclick="location.href='/boardList'">목록</button>
-                <button type="button" class="btn btn-dark saveBtn">수정</button>
+                <button type="button" class="btn btn-dark" id="updateBtn" onclick="onClickUpdateBtn()">수정</button>
             </div>
             <div>
+                <input type="hidden" id="no" th:value="${no}"/>
                 <div class="mb-3">
                     <label for="board-title" class="form-label">제목</label>
-                    <input type="email" class="form-control" id="board-title" placeholder="작성한 제목 넣어주기!!!">
+                    <input type="email" class="form-control" id="board-title" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="board-writer" class="form-label">작성자</label>
-                    <input type="email" class="form-control" id="board-writer" placeholder="아이디 넣어주기!!!!">
+                    <input type="email" class="form-control" id="board-writer" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="board-content" class="form-label">내용</label>
-                    <textarea class="form-control" id="board-content" rows="5" placeholder="작성한 내용 넣어주기!!!"></textarea>
+                    <textarea class="form-control" id="board-content" rows="5" readonly></textarea>
                 </div>
             </div>
         </div>

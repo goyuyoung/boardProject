@@ -11,14 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/board")
-public class BoardListController {
+public class BoardLockController {
 
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("/boardList")
-    public List<BoardVO> findBoardList() {
-        List<BoardVO>  boardVOList = boardService.findBoardList();
-        return boardVOList;
+    @GetMapping("/checkLockPw")
+    public int findBoardList(BoardVO boardVO) {
+        int cnt = boardService.checkLockPw(boardVO);
+        return cnt;
     }
 }

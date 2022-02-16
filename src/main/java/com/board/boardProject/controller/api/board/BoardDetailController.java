@@ -7,18 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/board")
-public class BoardListController {
+public class BoardDetailController {
 
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("/boardList")
-    public List<BoardVO> findBoardList() {
-        List<BoardVO>  boardVOList = boardService.findBoardList();
-        return boardVOList;
+    @GetMapping("/findBoardDetail")
+    public BoardVO findBoardList(BoardVO boardVO) {
+        return boardService.findBoardDetail(boardVO);
     }
+
+    @GetMapping("/updateBoard")
+    public void updateBoard(BoardVO boardVO) {
+        boardService.updateBoard(boardVO);
+    }
+
+
 }

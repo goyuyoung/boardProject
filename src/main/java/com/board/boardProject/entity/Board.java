@@ -2,19 +2,19 @@ package com.board.boardProject.entity;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "board")
 public  class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String uuid;
-
     private int no;
 
     private String title;

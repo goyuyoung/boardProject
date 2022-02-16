@@ -6,9 +6,7 @@ import java.sql.Timestamp;
 @Data
 public class BoardVO {
 
-    private String uuid;
-
-    private int no;
+    private Integer no;
 
     private String title;
 

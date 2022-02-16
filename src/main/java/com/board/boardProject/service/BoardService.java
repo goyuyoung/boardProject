@@ -21,16 +21,35 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
+    private ModelMapper modelMapper = new ModelMapper();
+
     public List<BoardVO> findBoardList() {
 //        List<Board> boardList =  boardRepository.findAll();
         List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
         List<BoardVO> boardVOList = new ArrayList<>();
-        // EntityList -> VoList
-        ModelMapper modelMapper = new ModelMapper();
+        // EntityList -> VOList
         for(Board board : boardList) {
             BoardVO boardVO = modelMapper.map(board,BoardVO.class);
             boardVOList.add(boardVO);
         }
         return boardVOList;
+    }
+
+    public int checkLockPw(BoardVO boardVO) {
+        int cnt = 0;
+        List<Board> checkList = boardRepository.findByNoAndLockPw(boardVO.getNo(), boardVO.getLockPw());
+        cnt = checkList.size();
+        return cnt;
+    }
+
+    public BoardVO findBoardDetail(BoardVO boardVO) {
+        Board board = boardRepository.findByNo(boardVO.getNo());
+        BoardVO result = modelMapper.map(board, BoardVO.class);
+        return result;
+    }
+
+    public void updateBoard(BoardVO boardVO) {
+        Board board = modelMapper.map(boardVO, Board.class);
+        boardRepository.save(board);
     }
 }

@@ -1,7 +1,9 @@
 package com.board.boardProject.controller.view;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BoardViewController {
@@ -17,12 +19,14 @@ public class BoardViewController {
     }
 
     @GetMapping("/boardDetail")
-    public String boardDetail(){
+    public String boardDetail(@RequestParam("no") int no, Model model){
+        model.addAttribute("no",no);
         return "/board/boardDetail";
     }
 
     @GetMapping("/boardLock")
-    public String boardLock(){
+    public String boardLock(@RequestParam("no") int no, Model model){
+        model.addAttribute("no",no);
         return "/board/boardLock";
     }
 }
