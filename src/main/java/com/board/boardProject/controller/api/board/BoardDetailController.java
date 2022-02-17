@@ -4,6 +4,7 @@ import com.board.boardProject.service.BoardService;
 import com.board.boardProject.vo.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class BoardDetailController {
         return boardService.findBoardDetail(boardVO);
     }
 
-    @GetMapping("/updateBoard")
+    @PostMapping("/updateBoard")
     public void updateBoard(BoardVO boardVO) {
         boardService.updateBoard(boardVO);
     }

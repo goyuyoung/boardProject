@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -50,7 +50,21 @@ public class BoardService {
     }
 
     public void saveBoard(BoardVO boardVO) {
+        List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "no"));
+        int maxNo = boardList.get(0).getNo();
+        boardVO.setNo(maxNo + 1);
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        boardVO.setCreatedAt(timestamp);
+
+        //로그인 정보 넣어주기
+        boardVO.setCreatedBy("테스터");
         Board board = modelMapper.map(boardVO, Board.class);
         boardRepository.save(board);
+    }
+
+    public void updateViewCount(BoardVO boardVO) {
+        boardRepository.updateViewCount(boardVO.getNo(), (boardVO.getViewCount() + 1));
+
     }
 }

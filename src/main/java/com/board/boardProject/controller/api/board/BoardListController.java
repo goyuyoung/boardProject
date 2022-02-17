@@ -4,6 +4,7 @@ import com.board.boardProject.service.BoardService;
 import com.board.boardProject.vo.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class BoardListController {
     public List<BoardVO> findBoardList() {
         List<BoardVO>  boardVOList = boardService.findBoardList();
         return boardVOList;
+    }
+
+    @PostMapping("/updateViewCount")
+    public void updateViewCount(BoardVO boardVO) {
+        boardService.updateViewCount(boardVO);
     }
 }

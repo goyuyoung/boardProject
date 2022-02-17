@@ -25,4 +25,11 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
                 + " , created_at = now() "
                 + " WHERE no = :no ", nativeQuery = true)
     void updateBoard(@Param("no") int no, @Param("title") String title, @Param("content") String content);
+
+    @Transactional
+    @Modifying
+    @Query(value=" UPDATE board "
+            + " SET view_count = :viewCount"
+            + " WHERE no = :no ", nativeQuery = true)
+    void updateViewCount(@Param("no") int no, @Param("viewCount") int viewCount);
 }

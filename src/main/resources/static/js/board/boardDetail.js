@@ -30,11 +30,15 @@ var onClickUpdateBtn = function () {
         param = { no: $("#no").val()
                   , title: $("#board-title").val()
                   , content: $("#board-content").val() }
-        $.get(apiUrl + "/updateBoard", param,function (res) {
-            alert("게시글 수정이 완료되었습니다.");
-            $("#board-title").attr("readonly",true);
-            $("#board-content").attr("readonly",true);
-            $("#updateBtn").text("수정");
+        $.post(apiUrl + "/updateBoard", param,function (res,status) {
+            if (status == "success") {
+                alert("게시글 수정이 완료되었습니다.");
+                $("#board-title").attr("readonly",true);
+                $("#board-content").attr("readonly",true);
+                $("#updateBtn").text("수정");
+            }else{
+                alert("게시글 수정이 실패하였습니다. 다시 확인해 주세요.");
+            }
         });
 
     }

@@ -14,8 +14,7 @@ import java.sql.Timestamp;
 public  class Board {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int no;
+    private Integer no;
 
     private String title;
 

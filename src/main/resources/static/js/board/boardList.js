@@ -29,8 +29,8 @@ var setBoardList = function (vo) {
         lock = ""
     }
     var data = "<tr>"
-        + "   <input type='hidden' id='uuid-"+ vo.no+"' value='"+ vo.uuid +"'/>"
         + "   <input type='hidden' id='lockYN-"+ vo.no+"' value='"+ vo.lockYN +"'/>"
+        + "   <input type='hidden' id='viewCount-"+ vo.no+"' value='"+ vo.viewCount +"'/>"
         + "   <th class='text-center' scope='row'>"+ vo.no +"</th>"
         + "   <td>"
         + "       <a href='javascript:void(0)' onclick='onclickTitle("+vo.no+");' >"+ vo.title +"</a>"
@@ -45,15 +45,18 @@ var setBoardList = function (vo) {
 
 }
 var onclickTitle = function (no) {
-    // href='boardLock'
-    console.log(no);
-    var uuid = $("#uuid-"+no).val();
-    var lockYN = $("#lockYN-"+no).val();
-    if (lockYN == "y") {
-        // 비밀글인 경우
-        location.href='boardLock?no='+no;
-    } else {
-        // 비밀글 아닌 경우
-        location.href='boardDetail?no='+no;
-    }
+    //조회수 카운트 로직 추가
+    var viewCount= $("#viewCount-"+no).val();
+    var param = {no: no, viewCount: viewCount};
+    $.post(apiUrl + "/updateViewCount", param,function (res,status) {
+        var lockYN = $("#lockYN-"+no).val();
+        if (lockYN == "y") {
+            // 비밀글인 경우
+            location.href='boardLock?no='+no;
+        } else {
+            // 비밀글 아닌 경우
+            location.href='boardDetail?no='+no;
+        }
+    });
+
 }
