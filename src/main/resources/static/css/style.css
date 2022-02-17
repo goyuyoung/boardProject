@@ -11,6 +11,11 @@ a:hover {
     color: black;
     text-decoration: underline;
 }
+/*input박스 그림자 효과 없애기*/
+.form-control:focus {
+    /*border-color: #dce0e4 !important;*/
+    box-shadow: 0 0 0 0!important;
+}
 
 .main {
     margin: 65px auto;
@@ -59,4 +64,19 @@ a:hover {
 }
 .text-center {
     text-align: center !important;
+}
+.searchId {
+    width: 200px;
+    display: inline-block;
+}
+.m-b-20 {
+    margin-bottom: 20px;
+}
+.searchIdBtn {
+    margin-left: 10px;
+    margin-bottom: 4px;
+}
+.userId {
+    width: 300px !important;
+    flex: 0 0 auto;
 }

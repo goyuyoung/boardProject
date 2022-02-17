@@ -6,7 +6,8 @@ $(document).ready( function () {
 })
 
 var initView = function () {
-    console.log("글 번호: " + $("#no").val());
+    $("#header").load("header");
+    $("#footer").load("footer");
 }
 
 var findBoardDetail = function () {

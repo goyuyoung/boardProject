@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,8 +58,6 @@ public class BoardService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         boardVO.setCreatedAt(timestamp);
 
-        //로그인 정보 넣어주기
-        boardVO.setCreatedBy("테스터");
         Board board = modelMapper.map(boardVO, Board.class);
         boardRepository.save(board);
     }

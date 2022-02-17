@@ -1,6 +1,7 @@
+<input type="hidden" id="sessionId" th:value="${userId}">
+<input type="hidden" id="sessionName" th:value="${userName}">
 <div class="bg-light top-title">
     <span onclick="location.href='/';" style="cursor:pointer;">BOARD_Yu0</span>
-<!--    <a href="/">BOARD_Yu0</a>-->
 </div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
@@ -15,26 +16,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="boardWrite">게시글 작성</a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" th:style="${userId != null ? 'display:block' : 'display:none'}">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         마이페이지
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="myInfo">내정보 수정</a></li>
-                        <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                        <li><a class="dropdown-item" href="myBoard">내가 쓴 글</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"> <!--로그아웃 상태인 경우에만 보임-->
+                <li class="nav-item" th:style="${userId == null ? 'display:block' : 'display:none'}">
                     <a class="nav-link" href="join">회원가입</a>
                 </li>
-                <!--<li class="nav-item"> &lt;!&ndash;로그인 상태인 경우에만 보임&ndash;&gt;
-                    <a class="nav-link" href="#">로그아웃</a>
-                </li>-->
+                <li class="nav-item" th:style="${userId == null ? 'display:block' : 'display:none'}">
+                    <a class="nav-link" href="login">로그인</a>
+                </li>
+                <li class="nav-item" th:style="${userId != null ? 'display:block' : 'display:none'}">
+                    <a class="nav-link" href="logout">로그아웃</a>
+                </li>
             </ul>
-            <!--                <form class="d-flex">-->
-            <!--                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-            <!--                    <button class="btn btn-outline-success" type="submit">Search</button>-->
-            <!--                </form>-->
         </div>
     </div>
 </nav>
+

@@ -1,6 +1,5 @@
 package com.board.boardProject.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

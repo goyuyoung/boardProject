@@ -15,6 +15,8 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     List<Board> findByNoAndLockPw(int no, String lockPw);
 
+    List<Board> findByCreatedBy(String createdBy);
+
     Board findByNo(int no);
 
     @Transactional

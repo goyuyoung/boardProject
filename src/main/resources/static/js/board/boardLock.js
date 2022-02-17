@@ -5,10 +5,12 @@ $(document).ready( function () {
 })
 
 var initView = function () {
-    console.log("글 번호: " +$("#no").val());
+    $("#header").load("header");
+    $("#footer").load("footer");
+    document.getElementById("footer").style.position = "fixed";
 }
 
-var enterClick = function (e) {
+var enterClick = function () {
     if (window.event.keyCode === 13) {
         onClickOkBtn();
     }
