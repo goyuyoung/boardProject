@@ -1,8 +1,8 @@
-var apiUrl = "/api/user"
+var apiUserUrl = "/api/user"
+var apiBoardUrl = "/api/board"
 
 $(document).ready( function () {
     initView();
-    findMyBordList();
 })
 
 var initView = function () {
@@ -12,7 +12,7 @@ var initView = function () {
 
 setTimeout(function () {
     param = {name: $("#sessionName").val()}
-    $.get(apiUrl + "/myBoardList", param,function (res) {
+    $.get(apiUserUrl + "/myBoardList", param,function (res) {
         console.log(res);
         for (var idx in res) {
             $("#myBoardList-table").append(setMyBoardList(res[idx]));
@@ -37,5 +37,22 @@ var setMyBoardList = function (vo) {
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
         + "</tr>";
     return data;
+
+}
+
+var onclickTitle = function (no) {
+    //조회수 카운트 로직 추가
+    var viewCount= $("#viewCount-"+no).val();
+    var param = {no: no, viewCount: viewCount};
+    $.post(apiBoardUrl + "/updateViewCount", param,function (res,status) {
+        var lockYN = $("#lockYN-"+no).val();
+        if (lockYN == "y") {
+            // 비밀글인 경우
+            location.href='boardLock?no='+no;
+        } else {
+            // 비밀글 아닌 경우
+            location.href='boardDetail?no='+no;
+        }
+    });
 
 }

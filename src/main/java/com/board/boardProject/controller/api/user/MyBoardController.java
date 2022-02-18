@@ -1,6 +1,6 @@
 package com.board.boardProject.controller.api.user;
 
-import com.board.boardProject.service.UserService;
+import com.board.boardProject.service.BoardService;
 import com.board.boardProject.vo.BoardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +14,10 @@ import java.util.List;
 public class MyBoardController {
 
     @Autowired
-    private UserService userService;
+    private BoardService boardService;
 
     @GetMapping("/myBoardList")
     public List<BoardVO> findMyBordList(String name) {
-        return userService.findMyBordList(name);
+        return boardService.findMyBordList(name);
     }
 }

@@ -51,14 +51,4 @@ public class UserService {
         return  boardList.size();
     }
 
-    public List<BoardVO> findMyBordList(String createdBy) {
-        List<Board> boardList = boardRepository.findByCreatedBy(createdBy);;
-        List<BoardVO> boardVOList = new ArrayList<>();
-        // EntityList -> VOList
-        for(Board board : boardList) {
-            BoardVO boardVO = modelMapper.map(board,BoardVO.class);
-            boardVOList.add(boardVO);
-        }
-        return boardVOList;
-    }
 }

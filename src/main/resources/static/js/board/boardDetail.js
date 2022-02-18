@@ -43,5 +43,13 @@ var onClickUpdateBtn = function () {
         });
 
     }
+}
 
+var onClickListBtn = function () {
+    var sessionId = $("#sessionId").val();
+    if (sessionId != ""){
+        location.href='myBoard';
+    } else {
+        location.href='boardList';
+    }
 }

@@ -66,4 +66,15 @@ public class BoardService {
         boardRepository.updateViewCount(boardVO.getNo(), (boardVO.getViewCount() + 1));
 
     }
+
+    public List<BoardVO> findMyBordList(String createdBy) {
+        List<Board> boardList = boardRepository.findByCreatedByOrderByCreatedAtDesc(createdBy);
+        List<BoardVO> boardVOList = new ArrayList<>();
+        // EntityList -> VOList
+        for(Board board : boardList) {
+            BoardVO boardVO = modelMapper.map(board,BoardVO.class);
+            boardVOList.add(boardVO);
+        }
+        return boardVOList;
+    }
 }
