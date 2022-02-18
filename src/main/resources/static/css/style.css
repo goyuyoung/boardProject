@@ -80,3 +80,8 @@ a:hover {
     width: 300px !important;
     flex: 0 0 auto;
 }
+
+.page-item.active .page-link {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}

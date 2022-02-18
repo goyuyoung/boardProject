@@ -1,7 +1,5 @@
 var apiUrl = "/api/board"
-var boardListSorts = [{key: 'createdAt', orderBy: 'desc'}];
-var boardListParams = {page: {pageSize: 2, selectPage: 0}, sorts: boardListSorts};
-var boardListPage = {page: 0, size: 10, sort: [{}]}
+var boardListPage = {page : 0, size: 5};
 
 
 $(document).ready( function() {
@@ -14,11 +12,16 @@ var initView = function () {
     $("#footer").load("footer");
 }
 
-var findBordList = function () {
-    $.get(apiUrl + "/boardList", {},function (res) {
-        for (var idx in res) {
-            $("#boardList-table").append(setBoardList(res[idx]));
+var findBordList = function (idx) {
+    $("#boardList-table").html('');
+    $("#pageDiv").html('');
+    boardListPage = {page : idx, size: 10};
+    $.get(apiUrl + "/boardList", boardListPage,function (res) {
+        console.log(res);
+        for (var idx in res.list) {
+            $("#boardList-table").append(setBoardList(res.list[idx]));
         };
+        setPaging(res.page);
     });
 }
 
@@ -44,6 +47,36 @@ var setBoardList = function (vo) {
     return data;
 
 }
+
+var setPaging = function (param) {
+    console.log(param);
+    var data ='<nav aria-label="Page navigation example">'
+            + '     <ul class="pagination justify-content-center">';
+    if (param.prev) {
+        data += '         <li class="page-item">'
+            + '             <a class="page-link" aria-label="Previous" onclick="findBordList('+ (param.startPage - 2) +')">'
+            + '                 <span aria-hidden="true">&laquo;</span>'
+            + '             </a>'
+            + '         </li>';
+    }
+    for (var i = param.startPage; i <= param.endPage; i++) {
+        data += '         <li class="page-item" id="li-'+ i +'"><a class="page-link" onclick="findBordList('+ (i - 1) +')">'+ i +'</a></li>'
+    }
+    if (param.next) {
+        data += '         <li class="page-item">'
+            + '             <a class="page-link" aria-label="Next" onclick="findBordList('+ param.endPage +')">'
+            + '                 <span aria-hidden="true">&raquo;</span>'
+            + '             </a>'
+            + '         </li>';
+    }
+    data += '     </ul>'
+        + '</nav>';
+    $("#pageDiv").append(data);
+
+    $("#li-"+param.currentPage).addClass("active");
+    $("#li-"+(param.currentPage-1)).removeClass("active");
+}
+
 var onclickTitle = function (no) {
     //조회수 카운트 로직 추가
     var viewCount= $("#viewCount-"+no).val();

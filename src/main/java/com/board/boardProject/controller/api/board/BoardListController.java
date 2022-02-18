@@ -2,7 +2,9 @@ package com.board.boardProject.controller.api.board;
 
 import com.board.boardProject.service.BoardService;
 import com.board.boardProject.vo.BoardVO;
+import com.board.boardProject.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,8 @@ public class BoardListController {
     private BoardService boardService;
 
     @GetMapping("/boardList")
-    public List<BoardVO> findBoardList() {
-        List<BoardVO>  boardVOList = boardService.findBoardList();
-        return boardVOList;
+    public PageVO findBoardList(Pageable pageable) {
+        return boardService.findBoardList(pageable);
     }
 
     @PostMapping("/updateViewCount")
