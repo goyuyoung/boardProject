@@ -67,8 +67,8 @@ public class BoardService {
 
     }
 
-    public List<BoardVO> findMyBordList(String createdBy) {
-        List<Board> boardList = boardRepository.findByCreatedByOrderByCreatedAtDesc(createdBy);
+    public List<BoardVO> findMyBordList(String createdByUuid) {
+        List<Board> boardList = boardRepository.findByCreatedByUuidOrderByCreatedAtDesc(createdByUuid);
         List<BoardVO> boardVOList = new ArrayList<>();
         // EntityList -> VOList
         for(Board board : boardList) {

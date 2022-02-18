@@ -16,7 +16,7 @@ var findBoardDetail = function () {
     $.get(apiUrl + "/findBoardDetail", param,function (res) {
         console.log(res);
         $("#board-title").val(res.title);
-        $("#board-writer").val(res.createdBy);
+        $("#board-writer").val(res.createdByName);
         $("#board-content").val(res.content);
     });
 }

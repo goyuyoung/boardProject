@@ -13,6 +13,7 @@ public class LayoutViewController {
     public String header(ModelMap model, HttpSession session){
         model.addAttribute("userId",session.getAttribute("userId"));
         model.addAttribute("userName",session.getAttribute("userName"));
+        model.addAttribute("userUuid",session.getAttribute("userUuid"));
         return "/layout/header";
     }
 

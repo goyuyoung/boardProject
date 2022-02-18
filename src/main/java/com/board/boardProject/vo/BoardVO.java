@@ -14,7 +14,9 @@ public class BoardVO {
 
     private Timestamp createdAt;
 
-    private String createdBy;
+    private String createdByName;
+
+    private String createdByUuid;
 
     private String lockPw;
 

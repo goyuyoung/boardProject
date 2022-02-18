@@ -22,7 +22,8 @@ var onClickSaveBtn = function () {
     var content = $("#board-content").val();
     var lockYN = "y";
     var lockPw = $("#board-lockPw").val();
-    var createdBy = $("#board-writer").val();
+    var createdByName = $("#board-writer").val();
+    var createdByUuid = $("#sessionUuid").val();
 
     if (title == "" || content == "") {
         alert("항목을 모두 입력해주세요.");
@@ -37,7 +38,7 @@ var onClickSaveBtn = function () {
             return;
         }
     }
-    var param = {title: title, content: content, lockYN: lockYN, lockPw: lockPw, createdBy: createdBy}
+    var param = {title: title, content: content, lockYN: lockYN, lockPw: lockPw, createdByName: createdByName, createdByUuid: createdByUuid}
     $.post(apiUrl + "/saveBoard", param,function (res,status) {
         if (status == "success") {
             alert("게시글 작성이 완료되었습니다.");

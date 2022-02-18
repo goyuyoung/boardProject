@@ -22,8 +22,11 @@ public  class Board {
     @Column(name = "created_at")
     private Timestamp createdAt;
 
-    @Column(name = "created_by")
-    private String createdBy;
+    @Column(name = "created_by_name")
+    private String createdByName;
+
+    @Column(name = "created_by_uuid")
+    private String createdByUuid;
 
     @Column(name = "lock_pw")
     private String lockPw;

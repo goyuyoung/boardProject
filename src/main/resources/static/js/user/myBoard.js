@@ -11,7 +11,7 @@ var initView = function () {
 }
 
 setTimeout(function () {
-    param = {name: $("#sessionName").val()}
+    param = {uuid: $("#sessionUuid").val()}
     $.get(apiUserUrl + "/myBoardList", param,function (res) {
         console.log(res);
         for (var idx in res) {
@@ -32,7 +32,7 @@ var setMyBoardList = function (vo) {
         + "   <td>"
         + "       <a href='javascript:void(0)' onclick='onclickTitle("+vo.no+");' >"+ vo.title +"</a>"
         + "   </td>"
-        + "   <td>"+ vo.createdBy +"</td>"
+        + "   <td>"+ vo.createdByName +"</td>"
         + "   <td>"+ createAt +"</td>"
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
         + "</tr>";

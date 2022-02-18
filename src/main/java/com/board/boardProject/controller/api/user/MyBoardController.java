@@ -17,7 +17,7 @@ public class MyBoardController {
     private BoardService boardService;
 
     @GetMapping("/myBoardList")
-    public List<BoardVO> findMyBordList(String name) {
-        return boardService.findMyBordList(name);
+    public List<BoardVO> findMyBordList(String uuid) {
+        return boardService.findMyBordList(uuid);
     }
 }

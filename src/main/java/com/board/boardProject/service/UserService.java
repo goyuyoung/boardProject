@@ -47,8 +47,23 @@ public class UserService {
             //로그인 가능
             session.setAttribute("userId", userVO.getUserId());
             session.setAttribute("userName", boardList.get(0).getName());
+            session.setAttribute("userUuid", boardList.get(0).getUuid());
         }
         return  boardList.size();
     }
 
-}
+    public UserVO findMyInfo(String uuid) {
+        List<User> userList = userRepository.findByUuid(uuid);;
+        List<UserVO> userVOList = new ArrayList<>();
+        for(User user : userList) {
+            UserVO userVO = modelMapper.map(user,UserVO.class);
+            userVOList.add(userVO);
+        }
+        return userVOList.get(0);
+    }
+
+    public void updateMyInfo(UserVO userVO) {
+        User user = modelMapper.map(userVO, User.class);
+        userRepository.save(user);
+    }
+ }

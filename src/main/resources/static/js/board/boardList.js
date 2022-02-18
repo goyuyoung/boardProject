@@ -35,7 +35,7 @@ var setBoardList = function (vo) {
         + "   <td>"
         + "       <a href='javascript:void(0)' onclick='onclickTitle("+vo.no+");' >"+ vo.title +"</a>"
         + "   </td>"
-        + "   <td>"+ vo.createdBy +"</td>"
+        + "   <td>"+ vo.createdByName +"</td>"
         + "   <td>"+ createAt +"</td>"
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
         + "   <td class='text-center'>"+ lock +"</td>"
