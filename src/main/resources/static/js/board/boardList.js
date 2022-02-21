@@ -4,7 +4,7 @@ var boardListPage = {page : 0, size: 5};
 
 $(document).ready( function() {
     initView();
-    findBordList();
+    findBordList(0);
 });
 
 var initView = function () {
@@ -49,7 +49,6 @@ var setBoardList = function (vo) {
 }
 
 var setPaging = function (param) {
-    console.log(param);
     var data ='<nav aria-label="Page navigation example">'
             + '     <ul class="pagination justify-content-center">';
     if (param.prev) {

@@ -1,6 +1,8 @@
 package com.board.boardProject.repository;
 
 import com.board.boardProject.entity.Board;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +17,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     List<Board> findByNoAndLockPw(int no, String lockPw);
 
-    List<Board> findByCreatedByUuidOrderByCreatedAtDesc(String createdByUuid);
+    Page<Board> findByCreatedByUuid(String createdByUuid, Pageable pageable);
 
     Board findByNo(int no);
 

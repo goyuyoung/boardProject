@@ -2,7 +2,9 @@ package com.board.boardProject.controller.api.user;
 
 import com.board.boardProject.service.BoardService;
 import com.board.boardProject.vo.BoardVO;
+import com.board.boardProject.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +19,7 @@ public class MyBoardController {
     private BoardService boardService;
 
     @GetMapping("/myBoardList")
-    public List<BoardVO> findMyBordList(String uuid) {
-        return boardService.findMyBordList(uuid);
+    public PageVO findMyBordList(Pageable pageable, String uuid) {
+        return boardService.findMyBordList(pageable, uuid);
     }
 }

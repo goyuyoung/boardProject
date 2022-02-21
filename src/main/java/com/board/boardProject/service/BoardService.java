@@ -31,17 +31,18 @@ public class BoardService {
         return setPageParam(pageable, pageBoardList);
     }
     public PageVO setPageParam(Pageable pageable, Page<Board> list) {
+        int pagingCount = 5; // 하단 페이징개수를 5로 고정 1~5, 6~10 이런식으로
         int pageSize = pageable.getPageSize();
         int totalPageSize = (int)list.getTotalElements();
         int currentPage = pageable.getPageNumber() + 1;
-        int endPage =  ((pageable.getPageNumber() / 5) + 1) * 5;
+        int endPage =  ((pageable.getPageNumber() / pagingCount) + 1) * pagingCount;
         if (endPage * pageSize > totalPageSize) {
             endPage = totalPageSize / pageSize + 1;
             if (totalPageSize % pageSize == 0) {
                 endPage -= 1;
             }
         }
-        int startPage = (pageable.getPageNumber() / 5 * 5 == 0 ? 1 : pageable.getPageNumber() / 5 * 5 + 1);
+        int startPage = (pageable.getPageNumber() / pagingCount * pagingCount == 0 ? 1 : pageable.getPageNumber() / pagingCount * pagingCount + 1);
         boolean prev = startPage == 1 ? false : true;
         boolean next = endPage * pageSize >= totalPageSize ? false : true;
 
@@ -90,14 +91,9 @@ public class BoardService {
 
     }
 
-    public List<BoardVO> findMyBordList(String createdByUuid) {
-        List<Board> boardList = boardRepository.findByCreatedByUuidOrderByCreatedAtDesc(createdByUuid);
-        List<BoardVO> boardVOList = new ArrayList<>();
-        // EntityList -> VOList
-        for(Board board : boardList) {
-            BoardVO boardVO = modelMapper.map(board,BoardVO.class);
-            boardVOList.add(boardVO);
-        }
-        return boardVOList;
+    public PageVO findMyBordList(Pageable pageable, String createdByUuid) {
+        pageable = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize(), Sort.by("createdAt").descending());
+        Page<Board> pageMyBoardList = boardRepository.findByCreatedByUuid(createdByUuid, pageable);
+        return setPageParam(pageable, pageMyBoardList);
     }
 }

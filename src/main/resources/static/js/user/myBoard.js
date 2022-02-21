@@ -1,5 +1,6 @@
 var apiUserUrl = "/api/user"
 var apiBoardUrl = "/api/board"
+var myBoardListPage = {page : 0, size: 3};
 
 $(document).ready( function () {
     initView();
@@ -11,17 +12,26 @@ var initView = function () {
 }
 
 setTimeout(function () {
-    param = {uuid: $("#sessionUuid").val()}
-    $.get(apiUserUrl + "/myBoardList", param,function (res) {
-        console.log(res);
-        for (var idx in res) {
-            $("#myBoardList-table").append(setMyBoardList(res[idx]));
-        };
-    });
+    findMyBoardList(0);
 },300);
+
+var findMyBoardList = function (idx) {
+    $("#myBoardList-table").html('');
+    $("#pageDiv").html('');
+    myBoardListPage = {page : idx, size: 3};
+    param = {uuid: $("#sessionUuid").val()}
+    $.get(apiUserUrl + "/myBoardList", $.extend(myBoardListPage,param), function (res) {
+        console.log(res);
+        for (var idx in res.list) {
+            $("#myBoardList-table").append(setMyBoardList(res.list[idx]));
+        };
+        setPaging(res.page);
+    });
+}
 
 var setMyBoardList = function (vo) {
     var createAt = vo.createdAt.substring(0,10);
+    var lock = "<i class='bi bi-key'></i>";
     if (vo.lockYN != "y") {
         lock = ""
     }
@@ -35,9 +45,38 @@ var setMyBoardList = function (vo) {
         + "   <td>"+ vo.createdByName +"</td>"
         + "   <td>"+ createAt +"</td>"
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
+        + "   <td class='text-center'>"+ lock +"</td>"
         + "</tr>";
     return data;
 
+}
+
+var setPaging = function (param) {
+    var data ='<nav aria-label="Page navigation example">'
+        + '     <ul class="pagination justify-content-center">';
+    if (param.prev) {
+        data += '         <li class="page-item">'
+            + '             <a class="page-link" aria-label="Previous" onclick="findMyBoardList('+ (param.startPage - 2) +')">'
+            + '                 <span aria-hidden="true">&laquo;</span>'
+            + '             </a>'
+            + '         </li>';
+    }
+    for (var i = param.startPage; i <= param.endPage; i++) {
+        data += '         <li class="page-item" id="li-'+ i +'"><a class="page-link" onclick="findMyBoardList('+ (i - 1) +')">'+ i +'</a></li>'
+    }
+    if (param.next) {
+        data += '         <li class="page-item">'
+            + '             <a class="page-link" aria-label="Next" onclick="findMyBoardList('+ param.endPage +')">'
+            + '                 <span aria-hidden="true">&raquo;</span>'
+            + '             </a>'
+            + '         </li>';
+    }
+    data += '     </ul>'
+        + '</nav>';
+    $("#pageDiv").append(data);
+
+    $("#li-"+param.currentPage).addClass("active");
+    $("#li-"+(param.currentPage-1)).removeClass("active");
 }
 
 var onclickTitle = function (no) {

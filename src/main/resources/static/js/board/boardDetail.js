@@ -14,10 +14,10 @@ var findBoardDetail = function () {
     var no = $("#no").val();
     var param = {no :no}
     $.get(apiUrl + "/findBoardDetail", param,function (res) {
-        console.log(res);
         $("#board-title").val(res.title);
         $("#board-writer").val(res.createdByName);
         $("#board-content").val(res.content);
+        $("#lockYn").val(res.lockYN);
     });
 }
 
@@ -46,10 +46,10 @@ var onClickUpdateBtn = function () {
 }
 
 var onClickListBtn = function () {
-    var sessionId = $("#sessionId").val();
-    if (sessionId != ""){
-        location.href='myBoard';
+    var lockYn = $("#lockYn").val();
+    if (lockYn != 'y') {
+        history.go(-1);
     } else {
-        location.href='boardList';
+        history.go(-2);
     }
 }
