@@ -1,6 +1,6 @@
 var apiUserUrl = "/api/user"
 var apiBoardUrl = "/api/board"
-var myBoardListPage = {page : 0, size: 3};
+var myBoardListPage = {page : 0, size: 10};
 
 $(document).ready( function () {
     initView();
@@ -18,7 +18,7 @@ setTimeout(function () {
 var findMyBoardList = function (idx) {
     $("#myBoardList-table").html('');
     $("#pageDiv").html('');
-    myBoardListPage = {page : idx, size: 3};
+    myBoardListPage = {page : idx, size: 10};
     param = {uuid: $("#sessionUuid").val()}
     $.get(apiUserUrl + "/myBoardList", $.extend(myBoardListPage,param), function (res) {
         console.log(res);
