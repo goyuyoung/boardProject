@@ -69,6 +69,9 @@ a:hover {
     width: 200px;
     display: inline-block;
 }
+.m-b-10 {
+    margin-bottom: 20px;
+}
 .m-b-20 {
     margin-bottom: 20px;
 }
@@ -84,4 +87,28 @@ a:hover {
 .page-item.active .page-link {
     background-color: #6c757d !important;
     border-color: #6c757d !important;
+}
+.reply-border textarea {
+    width: 90%;
+}
+.reply-border button {
+    width: 9%;
+    height: 85px;
+}
+.reply-border{
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ececec;
+}
+.reply-over {
+    overflow: hidden;
+}
+.reply-left {
+    float: left;
+}
+.reply-right {
+    float: right;
+}
+.reply-wrap {
+    padding: 10px 20px
 }
