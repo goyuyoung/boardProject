@@ -1,10 +1,8 @@
 package com.board.boardProject.service;
 
-import com.board.boardProject.entity.Board;
 import com.board.boardProject.entity.User;
 import com.board.boardProject.repository.BoardRepository;
 import com.board.boardProject.repository.UserRepository;
-import com.board.boardProject.vo.BoardVO;
 import com.board.boardProject.vo.UserVO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class UserService {
     }
 
     public void joinUser(UserVO userVO) {
-        String uuid = UUID.randomUUID().toString();;
+        String uuid = UUID.randomUUID().toString();
         userVO.setUuid(uuid);
         User user = modelMapper.map(userVO, User.class);
         userRepository.save(user);

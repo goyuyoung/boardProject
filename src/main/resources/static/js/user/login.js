@@ -19,7 +19,7 @@ var onClickLoginBtn = function () {
         alert("비밀번호를 입력해 주세요.");
     } else {
         //로그인 진행
-        param = { userId: writeId, userPassword: writePassword }
+        var param = { userId: writeId, userPassword: writePassword }
         $.post(apiUrl + "/loginUser", param,function (res,status) {
             if (status == "success") {
                 if (res > 0) {

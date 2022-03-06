@@ -19,7 +19,7 @@ var findMyBoardList = function (idx) {
     $("#myBoardList-table").html('');
     $("#pageDiv").html('');
     myBoardListPage = {page : idx, size: 10};
-    param = {uuid: $("#sessionUuid").val()}
+    var param = {uuid: $("#sessionUuid").val()}
     $.get(apiUserUrl + "/myBoardList", $.extend(myBoardListPage,param), function (res) {
         console.log(res);
         for (var idx in res.list) {

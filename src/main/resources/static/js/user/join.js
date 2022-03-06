@@ -19,7 +19,7 @@ var onClickIdBtn = function () {
     var userId = $("#searchId").val();
     var IdLength = userId.length;
     if(IdLength > 3 && IdLength < 17) {
-        param = { userId: userId }
+        var param = { userId: userId }
         $.get(apiUrl + "/checkId", param,function (res,status) {
             if (status == "success") {
                 $("#inputId").text(userId);
@@ -81,7 +81,7 @@ var onClickJoinBtn = function () {
         alert("비밀번호 확인란을 다시 확인해주세요.")
     } else {
         //회원가입 진행
-        param = { userId: userId, name: name, phone: phone, userPassword: userPassword }
+        var param = { userId: userId, name: name, phone: phone, userPassword: userPassword }
         $.post(apiUrl + "/joinUser", param,function (res,status) {
             if (status == "success") {
                 alert("축하합니다. 회원가입이 완료되었습니다.")

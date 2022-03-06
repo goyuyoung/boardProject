@@ -50,39 +50,12 @@
     <div class="container-fluid">
         <div class="fluid-main">
             <div class="reply-border reply-over">
-                <textarea class="form-control reply-left" rows="3"></textarea>
-                <button type="button" class="btn btn-secondary reply-right">등록하기</button>
+                <textarea class="form-control reply-left" rows="3" id="reply-content"></textarea>
+                <button type="button" class="btn btn-secondary reply-right" onclick="onClickReplySave()">등록하기</button>
             </div>
-            <div class='reply-border reply-wrap'>
-                <div class="reply-over m-b-10">
-                    <div class="reply-left">
-                        <strong>테스터</strong>
-                        <small>2022-03-05</small>
-                    </div>
-                    <div class="reply-right">
-                        <a href="#">삭제</a>
-                        <a href="#">수정</a>
-                    </div>
-                </div>
-                <div class="reply-content">
-                    <p>댓글 테스트 확인</p>
-                </div>
+            <div id="reply-list">
             </div>
-            <div class='reply-border reply-wrap'>
-                <div class="reply-over m-b-10">
-                    <div class="reply-left">
-                        <strong>테스터2</strong>
-                        <small>2022-03-05</small>
-                    </div>
-                    <div class="reply-right">
-                        <a href="#">삭제</a>
-                        <a href="#">수정</a>
-                    </div>
-                </div>
-                <div class="reply-content">
-                    <p>댓글 테스트 확인222</p>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
