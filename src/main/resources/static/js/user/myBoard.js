@@ -21,7 +21,6 @@ var findMyBoardList = function (idx) {
     myBoardListPage = {page : idx, size: 10};
     var param = {uuid: $("#sessionUuid").val()}
     $.get(apiUserUrl + "/myBoardList", $.extend(myBoardListPage,param), function (res) {
-        console.log(res);
         for (var idx in res.list) {
             $("#myBoardList-table").append(setMyBoardList(res.list[idx]));
         };
@@ -42,7 +41,7 @@ var setMyBoardList = function (vo) {
         + "   <td>"
         + "       <a href='javascript:void(0)' onclick='onclickTitle("+vo.no+");' >"+ vo.title +"</a>"
         + "   </td>"
-        + "   <td>"+ vo.createdByName +"</td>"
+        + "   <td>"+ vo.writer +"</td>"
         + "   <td>"+ createAt +"</td>"
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
         + "   <td class='text-center'>"+ lock +"</td>"

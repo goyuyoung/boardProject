@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,6 +21,9 @@ public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private UserService userService;
 
     private ModelMapper modelMapper = new ModelMapper();
 
@@ -45,12 +49,24 @@ public class BoardService {
         boolean next = endPage * pageSize >= totalPageSize ? false : true;
 
         PageVO pageVO = new PageVO();
-        pageVO.setList(list.getContent());
         pageVO.getPage().setCurrentPage(currentPage);
         pageVO.getPage().setStartPage(startPage);
         pageVO.getPage().setEndPage(endPage);
         pageVO.getPage().setPrev(prev);
         pageVO.getPage().setNext(next);
+
+        List<Board> boardList = list.getContent();
+        List<BoardVO> boardVOList = new ArrayList<>();
+        for (Board board : boardList) {
+            BoardVO boardVO = modelMapper.map(board, BoardVO.class);
+            String writer = "비회원";
+            if (!board.getCreatedBy().equals("")) {
+                writer = userService.findMyInfo(board.getCreatedBy()).getName();
+            }
+            boardVO.setWriter(writer);
+            boardVOList.add(boardVO);
+        }
+        pageVO.setList(boardVOList);
 
         return pageVO;
     }
@@ -65,6 +81,7 @@ public class BoardService {
     public BoardVO findBoardDetail(BoardVO boardVO) {
         Board board = boardRepository.findByNo(boardVO.getNo());
         BoardVO result = modelMapper.map(board, BoardVO.class);
+        result.setWriter(userService.findMyInfo(board.getCreatedBy()).getName());
         return result;
     }
 
@@ -89,9 +106,9 @@ public class BoardService {
 
     }
 
-    public PageVO findMyBordList(Pageable pageable, String createdByUuid) {
+    public PageVO findMyBordList(Pageable pageable, String createdBy) {
         pageable = PageRequest.of(pageable.getPageNumber(),pageable.getPageSize(), Sort.by("createdAt").descending());
-        Page<Board> pageMyBoardList = boardRepository.findByCreatedByUuid(createdByUuid, pageable);
+        Page<Board> pageMyBoardList = boardRepository.findByCreatedBy(createdBy, pageable);
         return setPageParam(pageable, pageMyBoardList);
     }
 }

@@ -17,7 +17,6 @@ var findMyInfo = function () {
     var userUuid = $("#sessionUuid").val();
     var param = {uuid :userUuid}
     $.get(apiUrl + "/findMyInfo", param,function (res) {
-        console.log(res);
         $("#userId").val(res.userId);
         $("#userName").val(res.name);
         $("#phone").val(res.phone);
@@ -54,9 +53,7 @@ var onClickMyInfoSaveBtn = function () {
     }
 }
 var updateMyInfo = function (param) {
-    console.log(param)
     $.post(apiUrl + "/updateMyInfo", param,function (res) {
-        console.log(res);
         alert("정보 수정이 완료되었습니다.");
         location.href='myInfo';
     });

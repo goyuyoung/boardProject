@@ -14,9 +14,9 @@ public class BoardVO {
 
     private Timestamp createdAt;
 
-    private String createdByName;
+    private String createdBy;
 
-    private String createdByUuid;
+    private String writer;
 
     private String lockPw;
 

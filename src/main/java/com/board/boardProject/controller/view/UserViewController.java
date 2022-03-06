@@ -9,8 +9,12 @@ import javax.servlet.http.HttpSession;
 public class UserViewController {
 
     @GetMapping("/")
-    public String loginMain() {
-        return "user/login";
+    public String loginMain(HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            return "user/login";
+        } else {
+            return "/board/boardList";
+        }
     }
 
     @GetMapping("login")

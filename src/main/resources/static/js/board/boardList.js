@@ -17,7 +17,6 @@ var findBordList = function (idx) {
     $("#pageDiv").html('');
     boardListPage = {page : idx, size: 10};
     $.get(apiUrl + "/boardList", boardListPage,function (res) {
-        console.log(res);
         for (var idx in res.list) {
             $("#boardList-table").append(setBoardList(res.list[idx]));
         };
@@ -38,7 +37,7 @@ var setBoardList = function (vo) {
         + "   <td>"
         + "       <a href='javascript:void(0)' onclick='onclickTitle("+vo.no+");' >"+ vo.title +"</a>"
         + "   </td>"
-        + "   <td>"+ vo.createdByName +"</td>"
+        + "   <td>"+ vo.writer +"</td>"
         + "   <td>"+ createAt +"</td>"
         + "   <td class='text-center'>"+ vo.viewCount +"</td>"
         + "   <td class='text-center'>"+ lock +"</td>"

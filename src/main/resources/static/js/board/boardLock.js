@@ -21,7 +21,6 @@ var onClickOkBtn = function () {
     var no = $("#no").val();
     var param = {no :no, lockPw: boardLockPw}
     $.get(apiUrl + "/checkLockPw", param,function (res) {
-        console.log(res);
         if(res > 0) {
             // 비밀번호 맞음
             location.href='boardDetail?no='+no;

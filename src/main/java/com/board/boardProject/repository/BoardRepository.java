@@ -17,7 +17,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     List<Board> findByNoAndLockPw(int no, String lockPw);
 
-    Page<Board> findByCreatedByUuid(String createdByUuid, Pageable pageable);
+    Page<Board> findByCreatedBy(String createdBy, Pageable pageable);
 
     Board findByNo(int no);
 

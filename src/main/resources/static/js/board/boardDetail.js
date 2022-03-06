@@ -16,7 +16,7 @@ var findBoardDetail = function () {
     var param = {no :no}
     $.get(apiBoardUrl + "/findBoardDetail", param,function (res) {
         $("#board-title").val(res.title);
-        $("#board-writer").val(res.createdByName);
+        $("#board-writer").val(res.writer);
         $("#board-content").val(res.content);
         $("#lockYn").val(res.lockYN);
         findReply(); //댓글 조회
@@ -61,7 +61,6 @@ var findReply = function () {
     var param = {bno: $("#no").val()};
     $.get(apiReplyUrl + "/findReply", param, function (res,status) {
         if (status == "success") {
-            console.log(res);
             for (var idx in res) {
                 $("#reply-list").append(setReplyList(res[idx]));
             };
@@ -99,6 +98,7 @@ var onClickReplySave = function () {
         var param = { bno: $("#no").val(), createdBy: sessionUuid, content: $("#reply-content").val()}
         $.post(apiReplyUrl + "/saveReply", param, function (res,status) {
             if (status == "success") {
+                $("#reply-content").val("");
                 findBoardDetail();
             }else{
                 alert("댓글 직성이 실패하였습니다. 다시 확인해 주세요.");
